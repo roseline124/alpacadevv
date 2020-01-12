@@ -7,11 +7,14 @@
   "dependencies": {
     "gatsby": "^2.18.12",
     "gatsby-image": "^2.2.34",
+    "gatsby-plugin-generate-typings": "^0.9.8-r1",
     "gatsby-plugin-manifest": "^2.2.31",
     "gatsby-plugin-offline": "^3.0.27",
     "gatsby-plugin-react-helmet": "^3.1.16",
     "gatsby-plugin-sharp": "^2.3.5",
+    "gatsby-plugin-typescript": "^2.1.26",
     "gatsby-source-filesystem": "^2.1.40",
+    "gatsby-transformer-remark": "^2.6.48",
     "gatsby-transformer-sharp": "^2.3.7",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
@@ -19,7 +22,20 @@
     "react-helmet": "^5.2.1"
   },
   "devDependencies": {
-    "prettier": "^1.19.1"
+    "@typescript-eslint/eslint-plugin": "^2.15.0",
+    "@typescript-eslint/parser": "^2.15.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "husky": "^4.0.6",
+    "lint-staged": "^9.5.0",
+    "prettier": "^1.19.1",
+    "ts-node": "^8.6.1",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
+    "typescript": "^3.7.4"
   },
   "keywords": [
     "gatsby"
@@ -28,7 +44,9 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "format": "prettier --write 'src/**/*.{js,ts,tsx,json,md}'",
+    "lint": "eslint src/**/*.{js,ts,tsx}",
+    "lint:fix": "yarn lint --fix",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",

@@ -1,7 +1,23 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
+import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
+import fs from 'fs'
+import path from 'path'
+export { createPages } from './src/lib/createPages'
 
-// You can delete this file if you're not using it
+const modules = fs.readdirSync(path.join(__dirname, 'src')).map(value => {
+  return path.basename(value, path.extname(value))
+})
+
+export const onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      plugins: [new TsconfigPathsPlugin()],
+      alias: modules.reduce(
+        (acc, cur) => ({
+          ...acc,
+          [cur]: path.resolve(__dirname, `src/${cur}`),
+        }),
+        {},
+      ),
+    },
+  })
+}
